@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lokálne služby – Miloslavov</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <style>
+    /* ── FILTER LIŠTA ── */
+    .filter-wrapper {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky;
+      top: 60px; /* výška nav */
+      z-index: 90;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .filter-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0.6rem 1.25rem;
+      display: flex;
+      gap: 0.4rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      align-items: center;
+    }
+    .filter-inner::-webkit-scrollbar { display: none; }
+    .filter-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--gray-600);
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-right: 0.25rem;
+      flex-shrink: 0;
+    }
+    .cat-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      background: var(--gray-100);
+      border: 1.5px solid transparent;
+      border-radius: 100px;
+      padding: 0.35rem 0.9rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.16s, color 0.16s, border-color 0.16s;
+    }
+    .cat-btn:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+    .cat-btn.active {
+      background: var(--blue);
+      color: var(--white);
+      border-color: var(--blue);
+    }
+    .cat-btn .cat-count {
+      background: rgba(255,255,255,0.25);
+      border-radius: 100px;
+      padding: 0 5px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      min-width: 18px;
+      text-align: center;
+    }
+    .cat-btn:not(.active) .cat-count {
+      background: var(--gray-200);
+      color: var(--gray-600);
+    }
+    /* ── SEKCIE KATEGÓRIÍ ── */
+    .cat-section { margin-bottom: 3rem; }
+    .cat-section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--gray-200);
+    }
+    .cat-section-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .cat-section-header h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin: 0;
+    }
+    .cat-section-header .cat-tag {
+      margin-left: auto;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      background: var(--gray-100);
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    /* ── PRÁZDNY STAV ── */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--gray-600);
+    }
+    .empty-state .big { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .empty-state p { font-size: 0.9rem; }
+    /* ── MAPY BANNER ── */
+    .maps-banner {
+      background: var(--blue-light);
+      border: 1px solid rgba(25,72,167,0.2);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .maps-banner-text { flex: 1; min-width: 200px; }
+    .maps-banner-text strong { color: var(--blue-dark); font-size: 0.9rem; display: block; margin-bottom: 0.2rem; }
+    .maps-banner-text p { font-size: 0.8rem; color: var(--gray-700); margin: 0; }
+    .maps-banner-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .map-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      transition: opacity 0.18s;
+      white-space: nowrap;
+    }
+    .map-link-btn:hover { opacity: 0.85; }
+    .map-link-btn.mapy {
+      background: #E3001B;
+      color: var(--white);
+    }
+    .map-link-btn.google {
+      background: var(--white);
+      color: var(--gray-800);
+      border: 1.5px solid var(--gray-200);
+    }
+    /* ── SKRYTÉ KARTY (filter) ── */
+    .service-card.hidden,
+    .add-service-card.hidden { display: none; }
+    .cat-section.hidden { display: none; }
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<div class="nav-wrapper">
+  <nav class="nav-inner" aria-label="Hlavné menu">
+    <div class="nav-brand"><a href="../" style="color:inherit;text-decoration:none">🏘️ Miloslavov</a> <span class="badge">komunitný sprievodca</span></div>
+    <div class="nav-sep"></div>
+    <div class="nav-links">
+      <a href="../sluzby/" class="active">🔧 Služby</a>
+      <a href="../ako-vybavim/">📋 Ako vybačím</a>
+      <a href="../volny-cas/">🚴 Voľný čas</a>
+      <a href="../doprava/">🚌 Doprava</a>
+      <a href="../komunita/">🤝 Komunita</a>
+      <a href="../skoly/">🏫 Školy</a>
+    </div>
+  </nav>
+</div>
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <div class="breadcrumb">
+    <a href="../">🏠 Domov</a>
+    <span class="sep">/</span>
+    <span class="current">Lokálne služby</span>
+  </div>
+</div>
+<!-- HERO -->
+<header class="hero compact">
+  <div class="hero-content">
+    <div class="hero-label">Komunita</div>
+    <h1><span>Lokálne</span> služby</h1>
+    <p>Šikovní susedia a živnostníci z Miloslavova, ktorých nenájdete na Google Maps.</p>
+  </div>
+</header>
+<div class="colored-divider"></div>
+<!-- FILTER LIŠTA -->
+<div class="filter-wrapper" id="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">Kategória:</span>
+    <button class="cat-btn active" data-cat="all">Všetky <span class="cat-count" id="count-all">14</span></button>
+    <button class="cat-btn" data-cat="krajcirstvo">✂️ Krajčírstvo <span class="cat-count" id="count-krajcirstvo">2</span></button>
+    <button class="cat-btn" data-cat="zahradnictvo">🌳 Záhradníctvo <span class="cat-count" id="count-zahradnictvo">2</span></button>
+    <button class="cat-btn" data-cat="upratovanie">🧹 Upratovanie <span class="cat-count" id="count-upratovanie">2</span></button>
+    <button class="cat-btn" data-cat="opravy">🔧 Opravy <span class="cat-count" id="count-opravy">2</span></button>
+    <button class="cat-btn" data-cat="doucovanie">📚 Doučovanie <span class="cat-count" id="count-doucovanie">2</span></button>
+    <button class="cat-btn" data-cat="opatrovanie">👶 Opatrovanie <span class="cat-count" id="count-opatrovanie">1</span></button>
+    <button class="cat-btn" data-cat="doprava">🚗 Doprava &amp; doručovanie <span class="cat-count" id="count-doprava">1</span></button>
+  </div>
+</div>
+<!-- OBSAH -->
+<main class="page-wrapper tight">
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <span class="disclaimer-icon">💡</span>
+    <span>Poznáte niekoho šikovného? <strong>Napíšte nám</strong> – pridáme ho zadarmo. Nie sme reklamný portál, iba susedský zoznam.</span>
+  </div>
+  <!-- MAPY BANNER -->
+  <div class="maps-banner">
+    <div class="maps-banner-text">
+      <strong>🗺️ Pomôžte rozšíriť mapy</strong>
+      <p>Ak viete o lokálnom podniku alebo živnostníkovi – pridávať ich môžete priamo na Mapy.com alebo Google Maps. Pomôže to celéj komunite.</p>
+    </div>
+    <div class="maps-banner-links">
+      <a href="https://mapy.com/misto/pridat" target="_blank" rel="noopener" class="map-link-btn mapy">
+        🗺️ Pridať na Mapy.com
+      </a>
+      <a href="https://maps.google.com/maps?q=Miloslavov" target="_blank" rel="noopener" class="map-link-btn google">
+        🌐 Google Maps
+      </a>
+    </div>
+  </div>
+  <!-- EMPTY STATE -->
+  <div class="empty-state" id="empty-state">
+    <div class="big">🔍</div>
+    <p>V tejto kategórii zatiaľ nie sú žiadne služby.<br>Viete o niekon? Napíšte nám!</p>
+  </div>
+  <!-- ══ KRAJČÍRSTVO ══ -->
+  <div class="cat-section" id="sec-krajcirstvo" data-cat="krajcirstvo">
+    <div class="cat-section-header">
+      <div class="cat-section-icon">✂️</div>
+      <h2>Krajčírstvo &amp; opravy odevov</h2>
+      <span class="cat-tag">2 poskytovatelia</span>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-cat="krajcirstvo">
+        <div class="service-cat-label">✂️ Krajčírstvo</div>
+        <h3>Marta Nováková – opravy odevov</h3>
+        <p class="desc">Opravy, skracovanie nohavc, výmena zipsov, záclony, posteľná bielizeň</p>
+        <div class="contact-list">
+          <div class="contact-item"><div class="icon">📞</div> 0910 123 456</div>
+          <div class="contact-item"><div class="icon">📍</div> Ul. pri parku 12</div>
+        </div>
+      </div>
+      <div class="service-card" data-cat="krajcirstvo">
+        <div class="service-cat-label">✂️ Krajčírstvo</div>
+        <h3>Jana Kováčová – vlastné šitie</h3>
+        <p class="desc">Vlastné šitie oblčekania, svadobné a spoločenské šaty, alterácie</p>
+        <div class="contact-list">
+          <div class="contact-item"><div class="icon">📞</div> 0915 987 654</div>
+          <div class="contact-item"><div class="icon">📍</div> Miloslavov-rad</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ══ ZÁHRADNÍCTVO ══ -->
+  <div class="cat-section" id="sec-zahradnictvo" data-cat="zahradnictvo">
+    <div class="cat-section-header">
+      <div class="cat-section-icon">🌳</div>
+      <h2>Záhradníctvo &amp; terenné úpravy</h2>
+      <span class="cat-tag">2 poskytovatelia</span>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-cat="zahradnictvo">
+        <div class="service-cat-label">🌿 Záhradníctvo</div>
+        <h3>Záhradník Peter – úprava záhrad</h3>
+        <p class="desc">Kosenie, strihanie živého plota, výrub stromov, vysádzanie, zavlažovanie</p>
+        <div class="contact-list">
+          <div class="contact-item"><div class="icon">📞</div> 0902 234 567</div>
+          <div class="contact-item"><div class="icon">📍</div> Slnečná 7</div>
+        </div>
+      </div>
+      <div class="service-card" data-cat="zahradnictvo">
+        <div class="service-cat-label">🌿 Záhradníctvo</div>
+        <h3>Roman – záhradné práce &amp; kompostovanie</h3>
+        <p class="desc">Prírodné záhradníctvo, kompostovanie, úprava jazierok, výsadba seznónnych kvetov</p>
+        <div class="contact-list">
+          <div class="contact-item"><div class="icon">📞</div> 0908 111 222</div>
+          <div class="contact-item"><div class="icon">⏰</div> Jar – Jeseň</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ══ UPRATOVANIE ══ -->
+  <div class="cat-section" id="sec-upratovanie" data-cat="upratovanie">
+    <div class="cat-section-header">
+      <div class="cat-section-icon">🧹</div>
+      <h2>Upratovanie &amp; domácnosť</h2>
+      <span class="cat-tag">2 poskytovatelia</span>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-cat="upratovanie">
+        <div class="service-cat-label">🧹 Upratovanie</div>
+        <h3>Jana &amp; Katka – domáce upratovanie</h3>
+        <p class="desc">Pravidelné i jednorazové upratovanie domácnosťí, generálky, sťahovanie</p>
+        <div class="contact-list">
+          <div class="contact-item"><div class="icon">📞</div> 0948 345 678</div>
+          <div class="contact-item"><div class="icon">💬</div> Iba SMS/WhatsApp</div>
+        </div>
+      </div>
+      <div class="service-card" data-cat="upratovanie">
+        <div class="service-cat-label">🧹 Upratovanie</div>
+        <h3>Miriama – upratovanie kancelárií &amp; AirBnB</h3>
+        <p class="desc">Upratovanie firemných priestorov, príprava AirBnB bytov, okná, po renovaciách</p>
+        <div class="contact-list">
+          <div class="contact-item"><div class="icon">📞</div> 0921 456 789</div>
+          <div class="contact-item"><div class="icon">📧</div> miriama@email.sk</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ══ OPRAVY ══ -->
+  <div class="cat-section" id="sec-opravy" data-cat="opravy">
+    <div class="cat-section-header">
+      <div class="cat-section-icon">🔧</div>
+      <h2>Opravy &amp; rekonštrukcie</h2>
+      <span class="cat-tag">2 poskytovatelia</span>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-cat="opravy">
+        <div class="service-cat-label">🔨 Stavebné práce</div>
+        <h3>Ľuboš – drobné stavebné práce</h3>
+        <p class="desc">Maľovanie, sádrokartón, obklady, opravy po haváriách, montáž nábytku</p>
+        <div class="contact-list">
+          <div class="contact-item"><div class="icon">📞</div> 0944 567 890</div>
+          <div class="contact-item"><div class="icon">📍</div> Miloslavov</div>
+        </div>
+      </div>
+      <div class="service-card" data-cat="opravy">
+        <div class="service-cat-label">💡 Elektrika</div>
+        <h3>Milan – elektrikari &amp; svietidlá</h3>
+        <p class="desc">Elektrinštalácia, výmena zásuviek, montáž svietidiel, revizné správy</p>
+        <div class="contact-list">
+          <div class="contact-item"><div class="icon">📞</div> 0905 333 444</div>
+          <div class="contact-item"><div class="icon">⏰</div> Po–Pi 7:00–18:00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ══ DOUČOVANIE ══ -->
+  <div class="cat-section" id="sec-doucovanie" data-cat="doucovanie">
+    <div class="cat-section-header">
+      <div class="cat-section-icon">📚</div>
+      <h2>Doučovanie &amp; vzdelanie</h2>
+      <span class="cat-tag">2 poskytovatelia</span>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-cat="doucovanie">
+        <div class="service-cat-label">📚 Doučovanie</div>
+        <h3>Mgr. Eva Horváthová – matematika, fyzika</h3>
+        <p class="desc">Doučovanie ZŠ a SŠ, príprava na maturitu a prijímačky. Aj online.</p>
+        <div class="contact-list">
+          <div class="contact-item"><div class="icon">📧</div> eva.horvath@email.sk</div>
+          <div class="contact-item"><div class="icon">📍</div> Miloslavov-rad</div>
+        </div>
+      </div>
+      <div class="service-card" data-cat="doucovanie">
+        <div class="service-cat-label">🇬🇧 Jazyky</div>
+        <h3>Tomáš – angličtina &amp; nemečtina</h3>
+        <p class="desc">Konverzačné kurzy, príprava na skúšky (B2, C1), deti aj dospelí</p>
+        <div class="contact-list">
+          <div class="contact-item"><div class="icon">📞</div> 0918 222 333</div>
+          <div class="contact-item"><div class="icon">💬</div> Aj cez Zoom</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ══ OPATROVANIE ══ -->
+  <div class="cat-section" id="sec-opatrovanie" data-cat="opatrovanie">
+    <div class="cat-section-header">
+      <div class="cat-section-icon">👶</div>
+      <h2>Opatrovanie &amp; starám sa</h2>
+      <span class="cat-tag">1 poskytovateľ</span>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-cat="opatrovanie">
+        <div class="service-cat-label">👶 Opatrovanie</div>
+        <h3>Zuzka – opatrovanie detí</h3>
+        <p class="desc">Opatrovanie detí od 1 roka, aj cez víkend, referencie k dispozícii</p>
+        <div class="contact-list">
+          <div class="contact-item"><div class="icon">📞</div> 0903 678 901</div>
+          <div class="contact-item"><div class="icon">💬</div> WhatsApp</div>
+        </div>
+      </div>
+      <div class="add-service-card" data-cat="opatrovanie">
+        <span class="plus">+</span>
+        <strong>Pridať službu</strong>
+        <span>V tejto kategórii hľadáme ďalších</span>
+      </div>
+    </div>
+  </div>
+  <!-- ══ DOPRAVA ══ -->
+  <div class="cat-section" id="sec-doprava" data-cat="doprava">
+    <div class="cat-section-header">
+      <div class="cat-section-icon">🚗</div>
+      <h2>Doprava &amp; doručovanie</h2>
+      <span class="cat-tag">1 poskytovateľ</span>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-cat="doprava">
+        <div class="service-cat-label">🚗 Doručovanie</div>
+        <h3>Jozef – nákupy a drobné pochôdzky</h3>
+        <p class="desc">Pomoc seniorom s nákupom, odvoz na lekára, doručenie v obci</p>
+        <div class="contact-list">
+          <div class="contact-item"><div class="icon">📞</div> 0911 456 789</div>
+          <div class="contact-item"><div class="icon">⏰</div> Po–Pi 8:00–17:00</div>
+        </div>
+      </div>
+      <div class="add-service-card" data-cat="doprava">
+        <span class="plus">+</span>
+        <strong>Pridať službu</strong>
+        <span>Rozážáate taxisluažbu alebo rozvoz?</span>
+      </div>
+    </div>
+  </div>
+</main>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.miloslavov.sk" target="_blank" rel="noopener">Oficiálna stránka obce</a>
+    <a href="../sluzby/">Služby</a>
+    <a href="../ako-vybavim/">Ako vybačím</a>
+    <a href="../volny-cas/">Voľný čas</a>
+    <a href="../doprava/">Doprava</a>
+    <a href="../komunita/">Komunita</a>
+    <a href="../skoly/">Školy</a>
+  </div>
+  <p><strong>Miloslavov – Komunitný sprievodca</strong> · Neoficiálny portál pre obyvateľov</p>
+  <p style="margin-top:0.5rem;font-size:0.75rem;opacity:0.6;">Obsah je poskytovaný len pre informčné účely. Kontaktné údaje sú ilustračné.</p>
+</footer>
+<script>
+  const buttons = document.querySelectorAll('.cat-btn');
+  const sections = document.querySelectorAll('.cat-section');
+  const emptyState = document.getElementById('empty-state');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat;
+      // Tlačidlá – zvýraznenie
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      // Sekcie – zobrazenie / skrytie
+      let anyVisible = false;
+      sections.forEach(sec => {
+        if (cat === 'all' || sec.dataset.cat === cat) {
+          sec.classList.remove('hidden');
+          anyVisible = true;
+        } else {
+          sec.classList.add('hidden');
+        }
+      });
+      emptyState.style.display = anyVisible ? 'none' : 'block';
+      // Scroll na prvú viditelnú sekciu (pri filtrovaní)
+      if (cat !== 'all') {
+        const target = document.getElementById('sec-' + cat);
+        if (target) {
+          setTimeout(() => {
+            const offset = target.getBoundingClientRect().top + window.scrollY - 130;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+          }, 50);
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
