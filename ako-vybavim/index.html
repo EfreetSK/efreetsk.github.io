@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ako vybavím… – Miloslavov</title>
+  <meta name="description" content="Krok za krokom: trvalý pobyt, výrub stromu, stavebné povolenie a ďalšie veci na obecnom úrade v Miloslavove." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<script src="../assets/nav.js"></script>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <div class="breadcrumb">
+    <a href="../">🏠 Domov</a>
+    <span class="sep">/</span>
+    <span class="current">Ako vybavím…</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero compact">
+  <div class="hero-content">
+    <div class="hero-label">Obecný úrad</div>
+    <h1>Ako vybavím <span>…</span></h1>
+    <p>Krok za krokom: trvalý pobyt, výrub stromu, stavebné povolenie a ďalšie veci na obecnom úrade.</p>
+  </div>
+</header>
+<div class="colored-divider"></div>
+
+<!-- FILTER LIŠTA -->
+<div class="filter-wrapper">
+  <div class="filter-inner">
+    <span class="filter-label">Téma:</span>
+    <button class="cat-btn active" data-cat="all">Všetky <span style="background:rgba(255,255,255,0.25);border-radius:100px;padding:0 6px;font-size:0.7rem;font-weight:700;">8</span></button>
+    <button class="cat-btn" data-cat="pobyt">🏠 Pobyt</button>
+    <button class="cat-btn" data-cat="stavba">🏗️ Stavba</button>
+    <button class="cat-btn" data-cat="priroda">🌳 Príroda</button>
+    <button class="cat-btn" data-cat="dane">💰 Dane &amp; poplatky</button>
+    <button class="cat-btn" data-cat="ostatne">📄 Ostatné</button>
+  </div>
+</div>
+
+<!-- OBSAH -->
+<main class="page-wrapper tight">
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <span class="disclaimer-icon">⚠️</span>
+    <span>Informácie sú orientačné a môžu sa meniť. Vždy si overte aktuálne požiadavky priamo na <strong>Obecnom úrade Miloslavov</strong> alebo na <a href="https://www.miloslavov.sk" target="_blank" rel="noopener" style="color:var(--yellow-dark);text-decoration:underline;">miloslavov.sk</a>.</span>
+  </div>
+
+  <!-- KONTAKT NA ÚRAD -->
+  <div class="office-card">
+    <div class="office-info">
+      <h3>🏛️ Obecný úrad Miloslavov</h3>
+      <div class="office-item">📍 <span>Miloslavov 124, 900 42 Miloslavov</span></div>
+      <div class="office-item">📞 <span><strong>02 / 4594 1360</strong></span></div>
+      <div class="office-item">📧 <span>obec@miloslavov.sk</span></div>
+    </div>
+    <div class="office-info">
+      <h3>🕐 Úradné hodiny</h3>
+      <div class="office-item">📅 <span>Pondelok: <strong>8:00 – 12:00, 13:00 – 16:00</strong></span></div>
+      <div class="office-item">📅 <span>Streda: <strong>8:00 – 12:00, 13:00 – 17:00</strong></span></div>
+      <div class="office-item">📅 <span>Piatok: <strong>8:00 – 12:00</strong></span></div>
+    </div>
+  </div>
+
+  <!-- ZOZNAM NÁVODOV -->
+  <div class="guide-list">
+
+    <!-- 1. TRVALÝ POBYT -->
+    <div class="guide-card" data-cat="pobyt" id="guide-pobyt">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-icon">🏠</div>
+        <div class="guide-header-text">
+          <h2>Prihlásenie na trvalý pobyt</h2>
+          <div class="guide-header-meta">
+            <span class="tag">Pobyt</span>
+            <span class="guide-time">⏱ 15–30 min na úrade</span>
+            <span class="tag green">Bezplatné</span>
+          </div>
+        </div>
+        <span class="guide-toggle">▼</span>
+      </div>
+      <div class="guide-body">
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Pripravte si doklady</strong>
+              <p>Skompletizujte všetky potrebné dokumenty (pozri zoznam nižšie). Bez úplných dokladov vás úrad nemusí vybaviť.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Dostavte sa na obecný úrad</strong>
+              <p>Prihlásenie trvalého pobytu sa vybavuje osobne na Obecnom úrade Miloslavov počas úradných hodín. Nie je potrebné sa vopred objednávať.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Vyplňte prihlasovací lístok</strong>
+              <p>Na úrade dostanete tlačivo „Prihlasovací lístok na trvalý pobyt". Vyplňte ho čitateľne podľa dokladov.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Odovzdajte doklady referentke</strong>
+              <p>Referentka skontroluje doklady a zaeviduje vás do registra obyvateľov. Celé vybavenie trvá zvyčajne 10–20 minút.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <strong>Preukaz totožnosti</strong>
+              <p>Po prihlásení je potrebné do 30 dní navštíviť <strong>oddelenie dokladov OR PZ</strong> (polícia) a nechať si aktualizovať adresu v občianskom preukaze.</p>
+            </div>
+          </div>
+        </div>
+        <div class="doc-box">
+          <div class="doc-box-title">📁 Potrebné doklady</div>
+          <div class="doc-list">
+            <div class="doc-item">Platný občiansky preukaz (alebo pas)</div>
+            <div class="doc-item">List vlastníctva alebo nájomná zmluva (originál alebo overená kópia)</div>
+            <div class="doc-item">Súhlas vlastníka nehnuteľnosti (ak nie ste vlastník) – podpísaný osobne na úrade alebo úradne overený</div>
+            <div class="doc-item">Pri maloletých deťoch: rodný list dieťaťa</div>
+          </div>
+        </div>
+        <div class="info-box">
+          💡 <span>Ak sa prihlasuje celá rodina, môže to za všetkých vybaviť jeden člen – musí však predložiť doklady za všetkých prihlasovaných.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. ODHLÁSENIE / ZMENA TRVALÉHO POBYTU -->
+    <div class="guide-card" data-cat="pobyt">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-icon">🔄</div>
+        <div class="guide-header-text">
+          <h2>Zmena alebo odhlásenie trvalého pobytu</h2>
+          <div class="guide-header-meta">
+            <span class="tag">Pobyt</span>
+            <span class="guide-time">⏱ 10–20 min na úrade</span>
+            <span class="tag green">Bezplatné</span>
+          </div>
+        </div>
+        <span class="guide-toggle">▼</span>
+      </div>
+      <div class="guide-body">
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Odhlásenie pri sťahovaní v rámci SR</strong>
+              <p>Pri sťahovaní na iné miesto v SR sa nemusíte odhlasovať osobitne – nový trvalý pobyt prihlási nový obecný úrad a automaticky vás odhlási z pôvodného miesta.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Odhlásenie pri odchode do zahraničia</strong>
+              <p>Ak odchádzate natrvalo do zahraničia, odhlásenie z trvalého pobytu vybavíte osobne na obecnom úrade. Dostanete potvrdenie o odhlásení.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Aktualizácia dokladov</strong>
+              <p>Po zmene trvalého pobytu nezabudnite do 30 dní zmeniť adresu aj v občianskom preukaze na príslušnom oddelení PZ.</p>
+            </div>
+          </div>
+        </div>
+        <div class="doc-box">
+          <div class="doc-box-title">📁 Potrebné doklady</div>
+          <div class="doc-list">
+            <div class="doc-item">Platný občiansky preukaz</div>
+            <div class="doc-item">Vyplnený odhlasovací lístok (k dispozícii na úrade)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. STAVEBNÉ POVOLENIE -->
+    <div class="guide-card yellow" data-cat="stavba">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-icon">🏗️</div>
+        <div class="guide-header-text">
+          <h2>Stavebné povolenie</h2>
+          <div class="guide-header-meta">
+            <span class="tag yellow">Stavba</span>
+            <span class="guide-time">⏱ niekoľko týždňov až mesiacov</span>
+            <span class="tag">Spoplatnené</span>
+          </div>
+        </div>
+        <span class="guide-toggle">▼</span>
+      </div>
+      <div class="guide-body">
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Zistite, či potrebujete stavebné povolenie</strong>
+              <p>Drobné stavby (prístrešky do 25 m², ploty, malé garáže) si zvyčajne vyžadujú len <em>ohlásenie</em>, nie povolenie. Pre istotu konzultujte na stavebnom úrade.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Nechajte vypracovať projektovú dokumentáciu</strong>
+              <p>Projektovú dokumentáciu musí vypracovať oprávnená osoba (autorizovaný stavebný inžinier alebo architekt). Dokumentácia musí spĺňať požiadavky stavebného zákona.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Podajte žiadosť na stavebnom úrade</strong>
+              <p>Miloslavov patrí pod Spoločný stavebný úrad so sídlom v Šamoríne. Žiadosť podávate tam spolu s kompletnou dokumentáciou.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Stavebné konanie</strong>
+              <p>Úrad preskúma dokumentáciu, osloví dotknuté orgány (energetika, vodovody, susedia). Môže vás vyzvať na doplnenie. Lehota na vydanie povolenia je zákonom stanovená (30–60 dní).</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <strong>Prevzatie stavebného povolenia</strong>
+              <p>Po vydaní povolenia máte 2 roky na začatie stavby (inak povolenie zaniká). Po dokončení stavby je potrebné kolaudačné rozhodnutie.</p>
+            </div>
+          </div>
+        </div>
+        <div class="doc-box">
+          <div class="doc-box-title">📁 Základné doklady k žiadosti</div>
+          <div class="doc-list">
+            <div class="doc-item">Vyplnená žiadosť o stavebné povolenie</div>
+            <div class="doc-item">Doklad o vlastníctve pozemku (list vlastníctva)</div>
+            <div class="doc-item">Projektová dokumentácia (2× vyhotovenie) vypracovaná autorizovanou osobou</div>
+            <div class="doc-item">Súhlas susedov (vlastníkov susedných parciel) – v niektorých prípadoch</div>
+            <div class="doc-item">Stanoviská dotknutých orgánov (SPP, elektro, vodovod, ...)</div>
+            <div class="doc-item">Doklad o zaplatení správneho poplatku</div>
+          </div>
+        </div>
+        <div class="info-box yellow">
+          ⚠️ <span>Stavebný zákon prechádza od r. 2024 zásadnými zmenami. Overte si aktuálny postup na <a href="https://www.miloslavov.sk" target="_blank" rel="noopener">miloslavov.sk</a> alebo priamo na stavebnom úrade v Šamoríne.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. OHLÁSENIE DROBNEJ STAVBY -->
+    <div class="guide-card yellow" data-cat="stavba">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-icon">🔨</div>
+        <div class="guide-header-text">
+          <h2>Ohlásenie drobnej stavby</h2>
+          <div class="guide-header-meta">
+            <span class="tag yellow">Stavba</span>
+            <span class="guide-time">⏱ 30 dní čakacia lehota</span>
+            <span class="tag green">Nízky poplatok</span>
+          </div>
+        </div>
+        <span class="guide-toggle">▼</span>
+      </div>
+      <div class="guide-body">
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Overte, či vaša stavba spadá pod „drobnú stavbu"</strong>
+              <p>Drobné stavby sú napríklad: prístavky a nadstavby do 25 m², garáže do 1 podlažia a 40 m², ploty, spevnené plochy, studne, malé čistiarne odpadových vôd.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Podajte písomné ohlásenie</strong>
+              <p>Na Obecnom úrade Miloslavov podáte písomné ohlásenie drobnej stavby s jednoduchým situačným výkresom a popisom stavby.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Čakajte na vyjadrenie</strong>
+              <p>Stavebný úrad má 30 dní na vyjadrenie. Ak do 30 dní nenamieta, môžete začať stavať. Niektoré úrady vydávajú písomné súhlasné stanovisko skôr.</p>
+            </div>
+          </div>
+        </div>
+        <div class="doc-box">
+          <div class="doc-box-title">📁 Potrebné dokumenty</div>
+          <div class="doc-list">
+            <div class="doc-item">Písomné ohlásenie stavby (formulár na obecnom úrade)</div>
+            <div class="doc-item">Jednoduchý situačný výkres (náčrt) s rozmermi stavby</div>
+            <div class="doc-item">List vlastníctva alebo iný doklad o práve k pozemku</div>
+            <div class="doc-item">Opis stavby a použité materiály</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. VÝRUB STROMU -->
+    <div class="guide-card green" data-cat="priroda">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-icon">🌳</div>
+        <div class="guide-header-text">
+          <h2>Povolenie na výrub stromu</h2>
+          <div class="guide-header-meta">
+            <span class="tag green">Príroda</span>
+            <span class="guide-time">⏱ do 30 dní od podania</span>
+            <span class="tag green">Bezplatné</span>
+          </div>
+        </div>
+        <span class="guide-toggle">▼</span>
+      </div>
+      <div class="guide-body">
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Zistite, či potrebujete povolenie</strong>
+              <p>Povolenie sa nevyžaduje pre stromy s obvodom kmeňa do 40 cm (meraným vo výške 130 cm nad zemou) alebo kroviny s plochou do 10 m². Pre stromy na lesnom pozemku sa vzťahujú iné pravidlá.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Podajte písomnú žiadosť na obecný úrad</strong>
+              <p>Žiadosť o výrub podávate na Obecnom úrade Miloslavov. Uveďte dôvod výrubu (napr. ohrozuje stavbu, odumretý strom, výstavba).</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Miestne šetrenie</strong>
+              <p>Obec môže vykonať miestne šetrenie – zamestnanec úradu príde na miesto a posúdi stav stromu a dôvod výrubu.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Vydanie rozhodnutia</strong>
+              <p>Úrad vydá rozhodnutie do 30 dní. Môže určiť podmienky (napr. náhradnú výsadbu). Výrub realizujte až po právoplatnosti rozhodnutia.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <strong>Náhradná výsadba</strong>
+              <p>Ak obec uloží podmienku náhradnej výsadby, je potrebné ju splniť v stanovenom termíne. Zápisnicou o výsadbe to doložíte na úrade.</p>
+            </div>
+          </div>
+        </div>
+        <div class="doc-box">
+          <div class="doc-box-title">📁 Potrebné doklady</div>
+          <div class="doc-list">
+            <div class="doc-item">Písomná žiadosť o výrub dreviny (meno, adresa, popis dreviny, dôvod výrubu)</div>
+            <div class="doc-item">Doklad o vlastníctve alebo správe pozemku</div>
+            <div class="doc-item">Fotografia stromu (odporúčané, nie povinné)</div>
+            <div class="doc-item">Snímka z katastrálnej mapy s vyznačením polohy stromu</div>
+          </div>
+        </div>
+        <div class="info-box">
+          💡 <span>Výrub stromov v hniezdnom období vtákov (1. marca – 31. augusta) je podmienený biologickým posúdením. Najvhodnejší čas na výrub je september – február.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. REGISTRÁCIA PSA -->
+    <div class="guide-card" data-cat="dane">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-icon">🐕</div>
+        <div class="guide-header-text">
+          <h2>Registrácia psa &amp; daň za psa</h2>
+          <div class="guide-header-meta">
+            <span class="tag">Dane &amp; poplatky</span>
+            <span class="guide-time">⏱ do 30 dní od nadobudnutia</span>
+            <span class="tag">Ročný poplatok</span>
+          </div>
+        </div>
+        <span class="guide-toggle">▼</span>
+      </div>
+      <div class="guide-body">
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Prihláste psa do 30 dní</strong>
+              <p>Každý pes starší ako 3 mesiace musí byť prihlásený na obecnom úrade do 30 dní od nadobudnutia alebo dovŕšenia veku.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Dostavte sa na obecný úrad</strong>
+              <p>Na úrade vyplníte „Prihlášku k dani za psa". Uveďte meno, adresu, údaje o psovi (plemeno, vek, čipové číslo).</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Zaplaťte ročný poplatok</strong>
+              <p>Výška dane za psa je stanovená v sadzobníku poplatkov obce Miloslavov. Platí sa spravidla raz ročne – v termíne určenom obcou.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Odznačok – evidenčná známka</strong>
+              <p>Obec vydá evidenčnú známku (odznačok), ktorú musí mať pes pri pohybe na verejnom priestranstve.</p>
+            </div>
+          </div>
+        </div>
+        <div class="doc-box">
+          <div class="doc-box-title">📁 Potrebné doklady</div>
+          <div class="doc-list">
+            <div class="doc-item">Občiansky preukaz</div>
+            <div class="doc-item">Veterinárny preukaz (očkovací preukaz psa)</div>
+            <div class="doc-item">Čipové číslo psa (ak je čipovaný – odporúčané)</div>
+          </div>
+        </div>
+        <div class="info-box">
+          💡 <span>Nezabudnite ohlásiť aj <strong>odhlásenie psa</strong> – pri predaji, darovaní alebo úhyne. Predídete tak zbytočnému dorubeniu dane.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. MIESTNE DANE A POPLATKY -->
+    <div class="guide-card" data-cat="dane">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-icon">💰</div>
+        <div class="guide-header-text">
+          <h2>Miestne dane a poplatky za komunálny odpad</h2>
+          <div class="guide-header-meta">
+            <span class="tag">Dane &amp; poplatky</span>
+            <span class="guide-time">⏱ termín: každý rok</span>
+            <span class="tag">Ročný poplatok</span>
+          </div>
+        </div>
+        <span class="guide-toggle">▼</span>
+      </div>
+      <div class="guide-body">
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Daňové priznanie k dani z nehnuteľností</strong>
+              <p>Ak ste v predchádzajúcom roku kúpili, zdedili alebo dostali do daru nehnuteľnosť v Miloslavove, musíte podať daňové priznanie <strong>do 31. januára</strong> nasledujúceho roku.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Platba dane z nehnuteľností</strong>
+              <p>Platobný výmer obdržíte poštou. Daň môžete uhradiť bankovým prevodom, poštovou poukážkou alebo v pokladni obecného úradu.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Poplatok za komunálny odpad</strong>
+              <p>Poplatok za komunálny odpad platia všetci obyvatelia s trvalým alebo prechodným pobytom v obci. Výzvu na zaplatenie dostanete poštou, prípadne sa informujte na úrade.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Úľavy a oslobodenia</strong>
+              <p>Obec môže poskytovať úľavy (napr. pre dlhodobých pobytov v zahraničí, sociálne prípady). Požiadajte o informácie priamo na úrade.</p>
+            </div>
+          </div>
+        </div>
+        <div class="info-box yellow">
+          ⚠️ <span>Sadzby poplatkov sa môžu každý rok meniť – schvaľuje ich obecné zastupiteľstvo. Aktuálne sadzby nájdete na <a href="https://www.miloslavov.sk" target="_blank" rel="noopener">miloslavov.sk</a> alebo na úradnej tabuli obce.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. ZÁPIS DIEŤAŤA DO ZŠ / MŠ -->
+    <div class="guide-card" data-cat="ostatne">
+      <div class="guide-header" onclick="toggleGuide(this)">
+        <div class="guide-icon">🏫</div>
+        <div class="guide-header-text">
+          <h2>Zápis dieťaťa do ZŠ alebo MŠ</h2>
+          <div class="guide-header-meta">
+            <span class="tag gray">Ostatné</span>
+            <span class="guide-time">⏱ apríl (ZŠ) / priebežne (MŠ)</span>
+            <span class="tag green">Bezplatné</span>
+          </div>
+        </div>
+        <span class="guide-toggle">▼</span>
+      </div>
+      <div class="guide-body">
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <strong>Zápis do základnej školy – termín</strong>
+              <p>Zápis do 1. ročníka ZŠ prebieha každoročne <strong>v apríli</strong>. Škola vopred zverejní presný termín a čas zápisu na svojej webovej stránke a na úradnej tabuli.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <strong>Dostavte sa do školy s dieťaťom</strong>
+              <p>Na zápis prídete spolu s dieťaťom. Učitelia krátko pohovoria s dieťaťom a zistia jeho pripravenosť. Vy vyplníte zápisný lístok.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <strong>Žiadosť o prijatie do materskej školy</strong>
+              <p>Do MŠ sa podáva <strong>písomná žiadosť</strong> riaditeľke školy zvyčajne <strong>do 31. mája</strong> na nasledujúci školský rok. Žiadosti sa podávajú priebežne podľa voľných miest.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <strong>Potvrdenie od lekára</strong>
+              <p>K žiadosti do MŠ je potrebné priložiť lekárske potvrdenie o zdravotnom stave dieťaťa a absolvovaných povinných očkovaniach.</p>
+            </div>
+          </div>
+        </div>
+        <div class="doc-box">
+          <div class="doc-box-title">📁 Potrebné doklady (ZŠ)</div>
+          <div class="doc-list">
+            <div class="doc-item">Rodný list dieťaťa</div>
+            <div class="doc-item">Občiansky preukaz rodiča/zákonného zástupcu</div>
+            <div class="doc-item">Rozhodnutie o odklade školskej dochádzky (ak bolo vydané)</div>
+          </div>
+        </div>
+        <div class="doc-box">
+          <div class="doc-box-title">📁 Potrebné doklady (MŠ)</div>
+          <div class="doc-list">
+            <div class="doc-item">Písomná žiadosť o prijatie (formulár od školy)</div>
+            <div class="doc-item">Rodný list dieťaťa</div>
+            <div class="doc-item">Potvrdenie od pediatra o zdravotnom stave a očkovaní</div>
+          </div>
+        </div>
+        <div class="info-box">
+          💡 <span>Kontakt na ZŠ a MŠ Miloslavov nájdete v sekcii <a href="../skoly/">Školy a vzdelávanie</a>.</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /guide-list -->
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://www.miloslavov.sk" target="_blank" rel="noopener">Oficiálna stránka obce</a>
+    <a href="../sluzby/">Služby</a>
+    <a href="../ako-vybavim/">Ako vybavím</a>
+    <a href="../volny-cas/">Voľný čas</a>
+    <a href="../doprava/">Doprava</a>
+    <a href="../odpad/">Odpad</a>
+    <a href="../skoly/">Školy</a>
+  </div>
+  <p><strong>Miloslavov – Komunitný sprievodca</strong> · Neoficiálny portál pre obyvateľov</p>
+  <p style="margin-top:0.5rem;font-size:0.75rem;opacity:0.6;">Obsah je poskytovaný len pre informačné účely. Vždy si overte aktuálne informácie na obecnom úrade.</p>
+</footer>
+
+<script>
+  // Accordion
+  function toggleGuide(header) {
+    const card = header.closest('.guide-card');
+    card.classList.toggle('open');
+  }
+
+  // Filter
+  const catBtns = document.querySelectorAll('.cat-btn');
+  const guideCards = document.querySelectorAll('.guide-card');
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat;
+      catBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      guideCards.forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      if (cat !== 'all') {
+        const first = document.querySelector(`.guide-card[data-cat="${cat}"]:not(.hidden)`);
+        if (first) {
+          setTimeout(() => {
+            const offset = first.getBoundingClientRect().top + window.scrollY - 130;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+          }, 50);
+        }
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Otvor prvý návod automaticky
+  document.querySelector('.guide-card')?.classList.add('open');
+</script>
+</body>
+</html>
+
+
+
+
+
